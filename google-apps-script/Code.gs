@@ -13,7 +13,8 @@ const CONFIG = {
  "uploadFolders": {
   "root": "School Website Uploads",
   "notices": "Notices",
-  "gallery": "Gallery"
+  "gallery": "Gallery",
+  "admissions": "Admissions"
  },
  "tabs": [
   {
@@ -620,7 +621,7 @@ function setup(){
   const root=rootId?DriveApp.getFolderById(rootId):DriveApp.createFolder(CONFIG.uploadFolders.root);
   props.setProperty('UPLOAD_ROOT_ID',root.getId());
   const uploadLinks={};
-  ['notices','gallery'].forEach(key=>{
+  ['notices','gallery','admissions'].forEach(key=>{
     const property='UPLOAD_'+key.toUpperCase()+'_ID';
     const id=props.getProperty(property);
     const folder=id?DriveApp.getFolderById(id):root.createFolder(CONFIG.uploadFolders[key]);
@@ -632,6 +633,7 @@ function setup(){
   Logger.log('Upload folders for administrators:');
   Logger.log('Notices: '+uploadLinks.notices);
   Logger.log('Gallery: '+uploadLinks.gallery);
+  Logger.log('Admissions: '+uploadLinks.admissions);
 }
 
 function uploadFolder_(key){
@@ -678,6 +680,17 @@ function noticeUploads_(){
   });
   return rows;
 }
+function admissionUploads_(){
+  const rows=[],uploads=folderFiles_(uploadFolder_('admissions'),'',[]);
+  uploads.forEach(upload=>{
+    const file=upload.file;
+    if(file.getMimeType()!=='application/pdf'){Logger.log('Skipping non-PDF in Admissions folder: '+file.getName());return}
+    publishFile_(file);
+    const title=file.getName().replace(/\.pdf$/i,'').replace(/[_-]+/g,' ');
+    rows.push({title:upload.folder?upload.folder+' - '+title:title,file:file.getUrl(),description:'',title_ne:'',description_ne:''});
+  });
+  return rows;
+}
 function content_(){
   const cache=CacheService.getScriptCache(), hit=cache.get('content');
   if(hit) return JSON.parse(hit);
@@ -697,6 +710,7 @@ function content_(){
   });
   out.gallery=out.gallery.concat(galleryUploads_());
   out.notices=out.notices.concat(noticeUploads_());
+  out.admissionFiles=out.admissionFiles.concat(admissionUploads_());
   try{cache.put('content',JSON.stringify(out),120);}catch(e){}
   return out;
 }
