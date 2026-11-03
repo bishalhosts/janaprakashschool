@@ -2,7 +2,7 @@
 const SITE={
   name:"Sample School",nameNe:"नमुना विद्यालय",tagline:"Learning today, leading tomorrow",taglineNe:"आजको शिक्षा, भोलिको नेतृत्व",
   email:"bishal94110@gmail.com",phone:"+977-XX-XXXXXX",address:"[School address, City, Nepal]",addressNe:"[विद्यालयको ठेगाना, सहर, नेपाल]",hours:"Sun-Fri, 9:00 AM - 4:00 PM",hoursNe:"आइत–शुक्र, बिहान ९:०० – दिउँसो ४:००",
-  API:"PASTE_APPS_SCRIPT_WEB_APP_URL_HERE",   // Google Sheet database (see README)
+  API:"https://script.google.com/macros/s/AKfycbx_nJgJcfZnzIcysJVmuh8A5_ZvUSP9kAWX8RdCoyUiuDfXxhwnUHzTJBuURDNalKat/exec",   // Google Sheet database (see README)
   nav:[["index","Home"],["about","About"],["academics","Academics"],["admissions","Admissions"],["calendar","Calendar"],["notices","Notices"],["gallery","Gallery"],["contact","Contact"]],
   cta:["Apply Now","admissions.html"],
   principal:{name:"[Principal Name]",nameNe:"[प्रधानाध्यापकको नाम]",role:"Principal",photo:"assets/images/principal.svg",message:"[Write the principal's welcome message here. Two or three short paragraphs work best.]",messageNe:"[प्रधानाध्यापकको स्वागत सन्देश यहाँ लेख्नुहोस्।]"},
