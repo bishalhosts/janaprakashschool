@@ -1,7 +1,7 @@
 # School / College Website
 Plain HTML + CSS + JavaScript, hosted free on GitHub Pages. Google Sheets is the database (Google Apps Script is the bridge).
 
-**Design:** a civic-inspired Nepal school identity with official navy, national red and gold accents; responsive navigation; bilingual English/Nepali controls; a Bikram Sambat calendar; admin-upload folders for notices and gallery images; sheet-managed admission forms and class subjects; light/dark mode; and keyboard focus styles.
+**Design:** a civic-inspired Nepal school identity with official navy, national red and gold accents; responsive navigation; bilingual English/Nepali controls; a Bikram Sambat calendar; admin-managed Drive folders for class PDFs, gallery images, notices, and admission forms; light/dark mode; and keyboard focus styles.
 
 ## Connect the Google Sheet database (10 minutes, free)
 1. Sign in to Google as **bishal94110@gmail.com** and open https://script.google.com -> **New project**.
@@ -24,9 +24,9 @@ Plain HTML + CSS + JavaScript, hosted free on GitHub Pages. Google Sheets is the
 | Slides | yes | Image, Title, Caption, Link, CTA, Title_ne, Caption_ne, CTA_ne, Published (home-page slider) |
 | Notices | yes | ID, Date, Title, Category, Description, Title_ne, Category_ne, Description_ne, File, Published |
 | Calendar | yes | legacy Date / EndDate, Title, Type, Title_ne, Type_ne, Published, DateBS, EndDateBS (optional) |
-| Gallery | yes | Image, Caption, Caption_ne, Published |
+| Gallery | yes | Image, Caption, Caption_ne, Category, Published |
 | Programs | yes | Title, Description, Title_ne, Description_ne, Published |
-| ClassSubjects | yes | Class, Subject, Description, Class_ne, Subject_ne, Description_ne, Published |
+| ClassSubjects | yes | Class, Subject, Description, Class_ne, Subject_ne, Description_ne, File, Published |
 | AdmissionFiles | yes | Title, File, Description, Title_ne, Description_ne, Published |
 | Enquiries | **private** | admission and contact form submissions (set Status / Notes yourself) |
 
@@ -35,11 +35,11 @@ Use the **नेपाली** button in the header to switch the interface lang
 ### Admin publishing
 - Keep the spreadsheet private to school administrators. The website reads only rows from public tabs that are not marked `No` in `Published`; visitors cannot edit the sheet. Changes usually appear within two minutes.
 - **Calendar:** enter dates in `DateBS` and optional `EndDateBS` as Bikram Sambat `YYYY-MM-DD` text, for example `2083-07-29`. `setup()` formats these columns as plain text. If editing an existing spreadsheet, run `setup()` after updating the Apps Script, and check that the new date columns are formatted as plain text. Activities are entered as rows in the Calendar tab; set `Published` to `Yes` to show them.
-- **Google Drive uploads:** after updating Apps Script, run `setup()` and grant the requested Google Drive permission. Find the **Notices**, **Gallery**, and **Admissions** folder URLs in the Apps Script execution log. Bookmark these folders and upload files directly; no website-code or Sheet-link edits are needed for these uploads. The root and folders remain admin-only; each supported uploaded file is automatically shared as **Anyone with the link — Viewer** because it is being published on a public website. Do not upload student records, personal information, or unpublished/private documents.
+- **Google Drive uploads:** after updating Apps Script, run `setup()` and grant the requested Google Drive permission. Find the **Notices**, **Gallery**, **Admissions**, and **Academics** folder URLs in the Apps Script execution log. Bookmark these folders and upload files directly; no website-code or Sheet-link edits are needed for uploads. The root and folders remain admin-only; each supported uploaded file is automatically shared as **Anyone with the link — Viewer** because it is being published on a public website. Do not upload student records, personal information, or unpublished/private documents.
 - **Notices:** upload notice PDFs into the Notices folder (subfolders are scanned too). Use `YYYY-MM-DD__Category__Title.pdf`, for example `2026-11-03__Admission__New-session-admission.pdf`, to set its displayed date, category and title. PDFs without that naming pattern still appear using the upload date and filename. They appear as links on the Notices page. To publish an announcement without a PDF, continue adding a row to the Notices sheet.
-- **Gallery:** upload JPG, PNG, GIF, or WebP images to the Gallery folder (subfolders are scanned too). The filename becomes the caption; a subfolder name is prepended for organization. Images automatically appear in the gallery and are optimized for display using Drive thumbnail links.
+- **Gallery:** create a folder for each category inside Gallery (for example, `Sports` or `Events`) and upload images there. The site uses each first-level folder as a clickable gallery category; deeper subfolders are also scanned. Images in the Gallery root appear under `General`. Upload browser-supported image formats such as JPG, PNG, GIF, WebP, SVG, or AVIF; Drive images automatically appear using thumbnail links. The filename becomes the caption.
 - **Admission form papers:** upload PDFs to the **Admissions** folder (subfolders are scanned too). The filename becomes the document title; underscores and hyphens are shown as spaces, and a subfolder name is prepended for organization. PDFs automatically appear as download links on the Admissions page. Remove a file from the folder to take it off the site. Existing `AdmissionFiles` Sheet rows remain supported for documents managed there.
-- **Class-wise subjects:** add one row per subject to `ClassSubjects`. Use the same class name for subjects belonging to the same class; optional Nepali columns provide localized names and descriptions.
+- **Class courses:** create a folder for each class inside Academics (for example, `Class 1`, `Class 2`) and put that class's subject PDFs in it. The site lists the classes like expandable playlists; opening a class reveals links to its PDFs. The PDF filename becomes the subject name, and deeper folders are included under their first-level class folder. Only PDFs inside a class folder are shown. Existing `ClassSubjects` rows remain supported; add a `File` link to make a sheet-managed subject downloadable.
 - Directly managed sheet rows remain supported: set `Published` to `No` to hide them. Drive-folder uploads are automatically published; remove a file from its upload folder to take it off the site. New uploads appear automatically when the site next loads after the short content cache expires (up to about two minutes). Protect spreadsheet access and grant edit permission only to administrators.
 
 The Bikram Sambat calendar uses the MIT-licensed [`nepali-date-converter` 3.4.2](https://github.com/subeshb1/Nepali-Date) library from jsDelivr; visitors need an internet connection to load that calendar conversion script. `DateBS` is the authoritative calendar date. Existing AD `Date` / `EndDate` entries remain readable as a compatibility fallback until you replace them with BS dates.

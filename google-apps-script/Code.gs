@@ -14,7 +14,8 @@ const CONFIG = {
   "root": "School Website Uploads",
   "notices": "Notices",
   "gallery": "Gallery",
-  "admissions": "Admissions"
+  "admissions": "Admissions",
+  "academics": "Academics"
  },
  "tabs": [
   {
@@ -300,6 +301,7 @@ const CONFIG = {
     "Image",
     "Caption",
     "Caption_ne",
+    "Category",
     "Published"
    ],
    "seed": [
@@ -307,11 +309,13 @@ const CONFIG = {
      "assets/images/gallery/g1.svg",
      "Morning assembly",
      "",
+     "",
      "Yes"
     ],
     [
      "assets/images/gallery/g2.svg",
      "Science laboratory",
+     "",
      "",
      "Yes"
     ],
@@ -319,11 +323,13 @@ const CONFIG = {
      "assets/images/gallery/g3.svg",
      "Sports day",
      "",
+     "",
      "Yes"
     ],
     [
      "assets/images/gallery/g4.svg",
      "Library",
+     "",
      "",
      "Yes"
     ],
@@ -331,11 +337,13 @@ const CONFIG = {
      "assets/images/gallery/g5.svg",
      "Art exhibition",
      "",
+     "",
      "Yes"
     ],
     [
      "assets/images/gallery/g6.svg",
      "Annual function",
+     "",
      "",
      "Yes"
     ]
@@ -343,7 +351,8 @@ const CONFIG = {
    "public": [
     "image",
     "caption",
-    "caption_ne"
+    "caption_ne",
+    "category"
    ],
    "hide": [
     "published",
@@ -425,6 +434,7 @@ const CONFIG = {
     "Class_ne",
     "Subject_ne",
     "Description_ne",
+    "File",
     "Published"
    ],
    "seed": [],
@@ -434,7 +444,8 @@ const CONFIG = {
     "description",
     "class_ne",
     "subject_ne",
-    "description_ne"
+    "description_ne",
+    "file"
    ],
    "hide": [
     "published",
@@ -621,7 +632,7 @@ function setup(){
   const root=rootId?DriveApp.getFolderById(rootId):DriveApp.createFolder(CONFIG.uploadFolders.root);
   props.setProperty('UPLOAD_ROOT_ID',root.getId());
   const uploadLinks={};
-  ['notices','gallery','admissions'].forEach(key=>{
+  ['notices','gallery','admissions','academics'].forEach(key=>{
     const property='UPLOAD_'+key.toUpperCase()+'_ID';
     const id=props.getProperty(property);
     const folder=id?DriveApp.getFolderById(id):root.createFolder(CONFIG.uploadFolders[key]);
@@ -634,6 +645,7 @@ function setup(){
   Logger.log('Notices: '+uploadLinks.notices);
   Logger.log('Gallery: '+uploadLinks.gallery);
   Logger.log('Admissions: '+uploadLinks.admissions);
+  Logger.log('Academics: '+uploadLinks.academics+' (create a folder for each class, then add subject PDFs)');
 }
 
 function uploadFolder_(key){
@@ -661,7 +673,7 @@ function galleryUploads_(){
     if(file.getMimeType().indexOf('image/')!==0){Logger.log('Skipping non-image in Gallery folder: '+file.getName());return}
     publishFile_(file);
     const caption=file.getName().replace(/\.[^.]+$/,'').replace(/[_-]+/g,' ');
-    rows.push({image:file.getUrl(),caption:upload.folder?upload.folder+' - '+caption:caption,caption_ne:'',id:file.getId()});
+    rows.push({image:file.getUrl(),caption:caption,caption_ne:'',category:upload.folder?upload.folder.split(' / ')[0]:'General',id:file.getId()});
   });
   return rows;
 }
@@ -691,6 +703,19 @@ function admissionUploads_(){
   });
   return rows;
 }
+function academicUploads_(){
+  const rows=[],uploads=folderFiles_(uploadFolder_('academics'),'',[]);
+  uploads.forEach(upload=>{
+    const file=upload.file;
+    if(file.getMimeType()!=='application/pdf'){Logger.log('Skipping non-PDF in Academics folder: '+file.getName());return}
+    if(!upload.folder){Logger.log('Skipping academic PDF outside a class folder: '+file.getName());return}
+    publishFile_(file);
+    const className=upload.folder.split(' / ')[0];
+    const subject=file.getName().replace(/\.pdf$/i,'').replace(/[_-]+/g,' ');
+    rows.push({class:className,subject:subject,description:'',class_ne:'',subject_ne:'',description_ne:'',file:file.getUrl()});
+  });
+  return rows;
+}
 function content_(){
   const cache=CacheService.getScriptCache(), hit=cache.get('content');
   if(hit) return JSON.parse(hit);
@@ -711,6 +736,7 @@ function content_(){
   out.gallery=out.gallery.concat(galleryUploads_());
   out.notices=out.notices.concat(noticeUploads_());
   out.admissionFiles=out.admissionFiles.concat(admissionUploads_());
+  out.classSubjects=out.classSubjects.concat(academicUploads_());
   try{cache.put('content',JSON.stringify(out),120);}catch(e){}
   return out;
 }
