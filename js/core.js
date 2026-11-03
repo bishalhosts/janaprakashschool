@@ -10,7 +10,7 @@ const translations={
  "LATEST":"ताजा सूचना","Notices":"सूचना","View all notices":"सबै सूचना हेर्नुहोस्","Gallery":"तस्बिरहरू","All photos":"सबै तस्बिर",
  "Our programs":"हाम्रा कार्यक्रम","Admissions are open":"भर्ना खुला छ","Come and see our school. We would be happy to welcome your child.":"हाम्रो विद्यालय भ्रमण गर्नुहोस्। तपाईंको बालबालिकालाई स्वागत गर्न हामी उत्सुक छौँ।",
  "Apply now":"अहिले आवेदन दिनुहोस्","View all notices":"सबै सूचना हेर्नुहोस्","About Our School":"हाम्रो विद्यालयबारे","Academics":"शैक्षिक कार्यक्रम","Classes and programs offered.":"उपलब्ध कक्षा तथा कार्यक्रमहरू।",
- "Joining us is simple.":"हाम्रो विद्यालयमा भर्ना प्रक्रिया सरल छ।","Student / guardian name":"विद्यार्थी / अभिभावकको नाम","Phone":"फोन","Email (optional)":"इमेल (वैकल्पिक)","Class":"कक्षा","Message (optional)":"सन्देश (वैकल्पिक)","Send enquiry":"जानकारी पठाउनुहोस्","Class-wise subjects and programs.":"कक्षाअनुसार विषय तथा कार्यक्रमहरू।","Choose class":"कक्षा छान्नुहोस्","All classes":"सबै कक्षा","Classes and subjects":"कक्षा र विषयहरू","Learning programs":"सिकाइ कार्यक्रम","Class subjects will be available soon.":"कक्षागत विषयहरू चाँडै उपलब्ध हुनेछन्।","Class Courses":"कक्षा पाठ्यक्रम","Choose a class to view its subjects and PDF materials.":"विषय र PDF सामग्री हेर्न कक्षा छान्नुहोस्।","subjects":"विषयहरू","Open PDF":"PDF खोल्नुहोस्","Gallery categories":"ग्यालरीका वर्गहरू","Choose a category to browse school photos.":"विद्यालयका तस्बिर हेर्न वर्ग छान्नुहोस्।","Admission enquiry":"भर्ना जानकारी","Admission forms":"भर्ना फाराम","Download form":"फाराम डाउनलोड गर्नुहोस्","Admission forms will be available here.":"भर्ना फाराम यहाँ उपलब्ध हुनेछन्।",
+ "Joining us is simple.":"हाम्रो विद्यालयमा भर्ना प्रक्रिया सरल छ।","Student / guardian name":"विद्यार्थी / अभिभावकको नाम","Phone":"फोन","Email (optional)":"इमेल (वैकल्पिक)","Class":"कक्षा","Message (optional)":"सन्देश (वैकल्पिक)","Send enquiry":"जानकारी पठाउनुहोस्","Class-wise subjects and programs.":"कक्षाअनुसार विषय तथा कार्यक्रमहरू।","Choose class":"कक्षा छान्नुहोस्","All classes":"सबै कक्षा","Classes and subjects":"कक्षा र विषयहरू","Learning programs":"सिकाइ कार्यक्रम","Class subjects will be available soon.":"कक्षागत विषयहरू चाँडै उपलब्ध हुनेछन्।","Class Courses":"कक्षा पाठ्यक्रम","Choose a class to view its subjects and PDF materials.":"विषय र PDF सामग्री हेर्न कक्षा छान्नुहोस्।","subjects":"विषयहरू","Open PDF":"PDF खोल्नुहोस्","Gallery categories":"ग्यालरीका वर्गहरू","Choose a category to browse school photos.":"विद्यालयका तस्बिर हेर्न वर्ग छान्नुहोस्।","Admission enquiry":"भर्ना जानकारी","Admission forms":"भर्ना फाराम","Download form":"फाराम डाउनलोड गर्नुहोस्","Download notice":"सूचना डाउनलोड गर्नुहोस्","Admission forms will be available here.":"भर्ना फाराम यहाँ उपलब्ध हुनेछन्।","Loading calendar...":"पात्रो लोड हुँदैछ...",
  "Academic Calendar":"बी.सं. शैक्षिक पात्रो","Holidays, exams and events for the session.":"यस शैक्षिक सत्रका बिदा, परीक्षा र कार्यक्रमहरू।","Holiday":"बिदा","Exam":"परीक्षा","Event":"कार्यक्रम","Admission":"भर्ना","All types":"सबै प्रकार","Prev":"अघिल्लो","Today":"आज","Next":"अर्को","Print":"प्रिन्ट","Dates this month":"यस महिनाका कार्यक्रम","Nepali calendar could not load. Check your internet connection and reload.":"नेपाली पात्रो लोड हुन सकेन। इन्टरनेट जडान जाँच गरी पृष्ठ पुनःलोड गर्नुहोस्।",
  "Contact Us":"हामीलाई सम्पर्क गर्नुहोस्","Send a message":"सन्देश पठाउनुहोस्","Your name":"तपाईंको नाम","Phone (optional)":"फोन (वैकल्पिक)","Message":"सन्देश","Send message":"सन्देश पठाउनुहोस्","Photo Gallery":"तस्बिर ग्यालरी","Notices & News":"सूचना तथा समाचार","Search notices":"सूचना खोज्नुहोस्","All categories":"सबै वर्ग","Open notice":"सूचना खोल्नुहोस्",
  "Facilities":"सुविधाहरू","Documents needed:":"आवश्यक कागजात:","Visit us":"हामीलाई भेट्नुहोस्","No upcoming dates.":"आगामी कार्यक्रम छैन।","No notices found.":"कुनै सूचना भेटिएन।",
@@ -55,9 +55,21 @@ function fileUrl(u){u=String(u||"").trim();const m=u.match(/drive\.google\.com\/
 /* Content: loaded from the Google Sheet through Apps Script; falls back to demo data (js/data.js) */
 async function loadContent(){
  if(!/^https:\/\//.test(SITE.API))return DEMO;
- try{const c=JSON.parse(sessionStorage.getItem("content")||"null");if(c&&Date.now()-c.t<120000)return c.d}catch(e){}
- try{const r=await fetch(SITE.API+"?action=content");const j=await r.json();if(j.ok){const d=Object.assign({},DEMO,j.data);try{sessionStorage.setItem("content",JSON.stringify({t:Date.now(),d}))}catch(e){}return d}}catch(e){console.warn("Using demo data:",e)}
+ const action=cur==="calendar"?"calendar":"content",cacheKey=action+"Content";
+ try{const c=JSON.parse(sessionStorage.getItem(cacheKey)||"null");if(c&&Date.now()-c.t<120000)return c.d}catch(e){}
+ try{const r=await fetch(SITE.API+"?action="+action);const j=await r.json();if(j.ok){const d=Object.assign({},DEMO,j.data);try{sessionStorage.setItem(cacheKey,JSON.stringify({t:Date.now(),d}))}catch(e){}return d}}catch(e){console.warn("Using demo data:",e)}
  return DEMO}
+let calendarLibraryPromise;
+function loadCalendarLibrary(){
+ if(typeof NepaliDate!=="undefined")return Promise.resolve();
+ if(calendarLibraryPromise)return calendarLibraryPromise;
+ calendarLibraryPromise=new Promise(resolve=>{
+  const script=document.createElement("script");script.src="https://cdn.jsdelivr.net/npm/nepali-date-converter@3.4.2/dist/nepali-date-converter.umd.js";script.async=true;
+  script.onload=()=>resolve();script.onerror=()=>{console.warn("Could not load the Nepali calendar library.");resolve()};
+  document.head.appendChild(script)
+ });
+ return calendarLibraryPromise
+}
 /* Slider: crossfade, autoplay, dots, arrows, swipe */
 function slider(el,slides){if(!slides.length){el.remove();return}el.classList.add("slider");
  el.innerHTML=`<div class="slides">${slides.map((s,i)=>`<figure class="slide${i?"":" on"}"><img src="${esc(imgUrl(s.image))}" alt="${esc(localText(s,"title"))}"${i?' loading="lazy"':""}><figcaption><h2>${esc(tr(localText(s,"title")))}</h2><p>${esc(tr(localText(s,"caption")))}</p>${s.link?`<a class="btn" href="${esc(s.link)}">${esc(tr(localText(s,"cta")||"Learn more"))}</a>`:""}</figcaption></figure>`).join("")}</div><button class="sl prev" aria-label="${esc(tr("Previous slide"))}">&#8249;</button><button class="sl next" aria-label="${esc(tr("Next slide"))}">&#8250;</button><div class="dots">${slides.map((_,i)=>`<button aria-label="Slide ${i+1}"></button>`).join("")}</div>`;
@@ -88,7 +100,7 @@ function menuInit(){const b=document.querySelector(".burger"),m=document.querySe
  const languageBtn=document.getElementById("languageBtn");languageBtn.textContent=language==="ne"?"English":"नेपाली";languageBtn.setAttribute("aria-label",language==="ne"?"अंग्रेजीमा हेर्नुहोस्":"View in Nepali");languageBtn.onclick=()=>setLanguage(language==="ne"?"en":"ne");
  addEventListener("scroll",()=>document.body.classList.toggle("scrolled",scrollY>40),{passive:true})}
 const R={};
-document.addEventListener("DOMContentLoaded",async()=>{layout();menuInit();const D=await loadContent();
+document.addEventListener("DOMContentLoaded",async()=>{layout();menuInit();const calendarMount=document.querySelector('[data-render="calendar"]');if(calendarMount)calendarMount.innerHTML=`<p class="empty-note">${esc(tr("Loading calendar..."))}</p>`;const tasks=[loadContent()];if(cur==="calendar"||cur==="index")tasks.push(loadCalendarLibrary());const [D]=await Promise.all(tasks);
  renderedData=D;renderContent(D);bindForms();initReveal();applyTranslations();updateDocumentTitle()});
 
 function renderContent(D){renderedData=D;document.querySelectorAll("[data-render]").forEach(e=>{const f=R[e.dataset.render];if(f)try{f(e,+e.dataset.n||0,D)}catch(err){console.error(err)}});applyTranslations()}

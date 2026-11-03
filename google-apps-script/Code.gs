@@ -4,6 +4,7 @@
  * Deploy > New deployment > Web app > Execute as: Me, Who has access: Anyone. Copy the URL into js/data.js (SITE.API).
  *
  * - GET  ?action=content  -> returns public sheet rows and files from managed Drive folders (cached 2 min).
+ * - GET  ?action=calendar -> returns only public Calendar rows (cached 2 min).
  * - POST {form:"..."}     -> validated, rate-limited and saved into a private tab.
  * Private tabs (enquiries, messages, e-mails...) are never returned by the public URL.
  */
@@ -640,6 +641,7 @@ function setup(){
     uploadLinks[key]=folder.getUrl();
   });
   CacheService.getScriptCache().remove('content');
+  CacheService.getScriptCache().remove('calendar');
   Logger.log(ss.getUrl());
   Logger.log('Upload folders for administrators:');
   Logger.log('Notices: '+uploadLinks.notices);
@@ -716,15 +718,11 @@ function academicUploads_(){
   });
   return rows;
 }
-function content_(){
-  const cache=CacheService.getScriptCache(), hit=cache.get('content');
-  if(hit) return JSON.parse(hit);
-  const ss=ss_(), tz=ss.getSpreadsheetTimeZone(), out={};
-  CONFIG.tabs.filter(t=>t.public).forEach(t=>{
+function publicRows_(ss,t,tz){
     const v=ss.getSheetByName(t.name).getDataRange().getValues();
     const h=v.shift().map(x=>String(x).toLowerCase().replace(/\s+/g,''));
     const col=n=>h.indexOf(n);
-    out[t.key]=v.filter(r=>{
+    return v.filter(r=>{
       if(r.every(c=>c==='')) return false;
       if(t.show && String(r[col(t.show[0])]).toLowerCase()!==t.show[1]) return false;
       if(t.hide && String(r[col(t.hide[0])]).toLowerCase()===t.hide[1]) return false;
@@ -732,7 +730,21 @@ function content_(){
     }).map(r=>{const o={};
       t.public.forEach(k=>{let x=r[col(k)]; if(x instanceof Date) x=Utilities.formatDate(x,tz,'yyyy-MM-dd'); o[k]=x;});
       return o;});
-  });
+}
+function calendarContent_(){
+  const cache=CacheService.getScriptCache(),hit=cache.get('calendar');
+  if(hit) return JSON.parse(hit);
+  const ss=ss_(),tab=CONFIG.tabs.find(t=>t.key==='calendar');
+  if(!tab) throw new Error('Calendar tab is not configured.');
+  const rows=publicRows_(ss,tab,ss.getSpreadsheetTimeZone());
+  try{cache.put('calendar',JSON.stringify(rows),120);}catch(e){}
+  return rows;
+}
+function content_(){
+  const cache=CacheService.getScriptCache(), hit=cache.get('content');
+  if(hit) return JSON.parse(hit);
+  const ss=ss_(), tz=ss.getSpreadsheetTimeZone(), out={};
+  CONFIG.tabs.filter(t=>t.public).forEach(t=>{out[t.key]=publicRows_(ss,t,tz)});
   out.gallery=out.gallery.concat(galleryUploads_());
   out.notices=out.notices.concat(noticeUploads_());
   out.admissionFiles=out.admissionFiles.concat(admissionUploads_());
@@ -741,6 +753,7 @@ function content_(){
   return out;
 }
 function doGet(e){
+  if((e.parameter||{}).action==='calendar') return json_({ok:true,data:{calendar:calendarContent_()}});
   if((e.parameter||{}).action==='content') return json_({ok:true,data:content_()});
   return json_({ok:true,service:CONFIG.title});
 }
