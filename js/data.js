@@ -1,4 +1,4 @@
-/* ===== EDIT THIS FILE: school name, contact details and fixed text. News, calendar, slides, gallery and programs live in your Google Sheet. ===== */
+/* ===== EDIT THIS FILE: school name, contact details and fixed text. News, B.S. activities, slides, gallery, programs, class subjects and admission files live in your Google Sheet. ===== */
 const SITE={
   name:"Sample School",nameNe:"नमुना विद्यालय",tagline:"Learning today, leading tomorrow",taglineNe:"आजको शिक्षा, भोलिको नेतृत्व",
   email:"bishal94110@gmail.com",phone:"+977-XX-XXXXXX",address:"[School address, City, Nepal]",addressNe:"[विद्यालयको ठेगाना, सहर, नेपाल]",hours:"Sun-Fri, 9:00 AM - 4:00 PM",hoursNe:"आइत–शुक्र, बिहान ९:०० – दिउँसो ४:००",
@@ -87,44 +87,44 @@ const DEMO={
  ],
  "calendar": [
   {
-   "date": "2026-11-15",
-   "enddate": "",
+   "datebs": "2083-07-29",
+   "enddatebs": "",
    "title": "Annual Sports Day",
    "type": "Event"
   },
   {
-   "date": "2026-11-23",
-   "enddate": "2026-11-30",
+   "datebs": "2083-08-07",
+   "enddatebs": "2083-08-14",
    "title": "Mid-term Examinations",
    "type": "Exam"
   },
   {
-   "date": "2026-12-05",
-   "enddate": "",
+   "datebs": "2083-08-19",
+   "enddatebs": "",
    "title": "Parents-Teachers Meeting",
    "type": "Event"
   },
   {
-   "date": "2026-12-25",
-   "enddate": "2027-01-10",
+   "datebs": "2083-09-10",
+   "enddatebs": "2083-09-26",
    "title": "Winter Vacation",
    "type": "Holiday"
   },
   {
-   "date": "2027-01-15",
-   "enddate": "",
+   "datebs": "2083-10-01",
+   "enddatebs": "",
    "title": "New Session Admission Begins",
    "type": "Admission"
   },
   {
-   "date": "2027-02-12",
-   "enddate": "",
+   "datebs": "2083-10-29",
+   "enddatebs": "",
    "title": "Science Fair",
    "type": "Event"
   },
   {
-   "date": "2027-03-01",
-   "enddate": "2027-03-12",
+   "datebs": "2083-11-17",
+   "enddatebs": "2083-11-28",
    "title": "Annual Examinations",
    "type": "Exam"
   }
@@ -180,5 +180,7 @@ const DEMO={
    "title": "Co-curricular",
    "description": "Sports, music, art, debate, scouts and computer club."
   }
- ]
+ ],
+ "classSubjects": [],
+ "admissionFiles": []
 };

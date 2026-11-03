@@ -3,13 +3,18 @@
  * Setup: paste this file in script.google.com, run setup() once (authorise), then
  * Deploy > New deployment > Web app > Execute as: Me, Who has access: Anyone. Copy the URL into js/data.js (SITE.API).
  *
- * - GET  ?action=content  -> returns ONLY the public columns of the public tabs (cached 2 min).
+ * - GET  ?action=content  -> returns public sheet rows and files from managed Drive folders (cached 2 min).
  * - POST {form:"..."}     -> validated, rate-limited and saved into a private tab.
  * Private tabs (enquiries, messages, e-mails...) are never returned by the public URL.
  */
 const ADMIN_EMAIL = 'bishal94110@gmail.com';   // receives a notification for every new submission
 const CONFIG = {
  "title": "Sample School Database",
+ "uploadFolders": {
+  "root": "School Website Uploads",
+  "notices": "Notices",
+  "gallery": "Gallery"
+ },
  "tabs": [
   {
    "name": "Slides",
@@ -32,6 +37,9 @@ const CONFIG = {
      "Learning today, leading tomorrow.",
      "about.html",
      "About us",
+     "",
+     "",
+     "",
      "Yes"
     ],
     [
@@ -40,6 +48,9 @@ const CONFIG = {
      "Apply online - we will contact you within two working days.",
      "admissions.html",
      "Apply now",
+     "",
+     "",
+     "",
      "Yes"
     ],
     [
@@ -48,6 +59,9 @@ const CONFIG = {
      "Join us on 15 November for a day of games and celebration.",
      "calendar.html",
      "See calendar",
+     "",
+     "",
+     "",
      "Yes"
     ],
     [
@@ -56,6 +70,9 @@ const CONFIG = {
      "A quiet, well-stocked place for reading and research.",
      "gallery.html",
      "View gallery",
+     "",
+     "",
+     "",
      "Yes"
     ]
    ],
@@ -86,6 +103,7 @@ const CONFIG = {
     "Title_ne",
     "Category_ne",
     "Description_ne",
+    "File",
     "Published"
    ],
    "seed": [
@@ -95,6 +113,10 @@ const CONFIG = {
      "Admission open for the new session",
      "Admission",
      "Admission forms are available at the office and on the Admissions page. Replace this text with the real notice.",
+     "",
+     "",
+     "",
+     "",
      "Yes"
     ],
     [
@@ -103,6 +125,10 @@ const CONFIG = {
      "Mid-term examination routine published",
      "Exam",
      "Exam routine for all classes. Replace this text with the real notice.",
+     "",
+     "",
+     "",
+     "",
      "Yes"
     ],
     [
@@ -111,6 +137,10 @@ const CONFIG = {
      "Parents-Teachers meeting on 5 December",
      "Event",
      "All parents are requested to attend. Replace this text with the real notice.",
+     "",
+     "",
+     "",
+     "",
      "Yes"
     ],
     [
@@ -119,6 +149,10 @@ const CONFIG = {
      "Winter vacation schedule",
      "Holiday",
      "School will remain closed during the vacation. Replace this text with the real notice.",
+     "",
+     "",
+     "",
+     "",
      "Yes"
     ],
     [
@@ -127,6 +161,10 @@ const CONFIG = {
      "Result of first terminal exam",
      "Result",
      "Results are available from class teachers. Replace this text with the real notice.",
+     "",
+     "",
+     "",
+     "",
      "Yes"
     ]
    ],
@@ -138,7 +176,8 @@ const CONFIG = {
     "description",
     "title_ne",
     "category_ne",
-    "description_ne"
+    "description_ne",
+    "file"
    ],
    "hide": [
     "published",
@@ -155,62 +194,94 @@ const CONFIG = {
     "Type",
     "Title_ne",
     "Type_ne",
-    "Published"
+    "Published",
+    "DateBS",
+    "EndDateBS"
    ],
    "seed": [
     [
-     "2026-11-15",
+     "",
      "",
      "Annual Sports Day",
      "Event",
-     "Yes"
+     "",
+     "",
+     "Yes",
+     "2083-07-29",
+     ""
     ],
     [
-     "2026-11-23",
-     "2026-11-30",
+     "",
+     "",
      "Mid-term Examinations",
      "Exam",
-     "Yes"
+     "",
+     "",
+     "Yes",
+     "2083-08-07",
+     "2083-08-14"
     ],
     [
-     "2026-12-05",
+     "",
      "",
      "Parents-Teachers Meeting",
      "Event",
-     "Yes"
+     "",
+     "",
+     "Yes",
+     "2083-08-19",
+     ""
     ],
     [
-     "2026-12-25",
-     "2027-01-10",
+     "",
+     "",
      "Winter Vacation",
      "Holiday",
-     "Yes"
+     "",
+     "",
+     "Yes",
+     "2083-09-10",
+     "2083-09-26"
     ],
     [
-     "2027-01-15",
+     "",
      "",
      "New Session Admission Begins",
      "Admission",
-     "Yes"
+     "",
+     "",
+     "Yes",
+     "2083-10-01",
+     ""
     ],
     [
-     "2027-02-12",
+     "",
      "",
      "Science Fair",
      "Event",
-     "Yes"
+     "",
+     "",
+     "Yes",
+     "2083-10-29",
+     ""
     ],
     [
-     "2027-03-01",
-     "2027-03-12",
+     "",
+     "",
      "Annual Examinations",
      "Exam",
-     "Yes"
+     "",
+     "",
+     "Yes",
+     "2083-11-17",
+     "2083-11-28"
     ]
    ],
    "public": [
     "date",
     "enddate",
+    "datebs",
+    "enddatebs",
     "title",
     "type",
     "title_ne",
@@ -234,31 +305,37 @@ const CONFIG = {
     [
      "assets/images/gallery/g1.svg",
      "Morning assembly",
+     "",
      "Yes"
     ],
     [
      "assets/images/gallery/g2.svg",
      "Science laboratory",
+     "",
      "Yes"
     ],
     [
      "assets/images/gallery/g3.svg",
      "Sports day",
+     "",
      "Yes"
     ],
     [
      "assets/images/gallery/g4.svg",
      "Library",
+     "",
      "Yes"
     ],
     [
      "assets/images/gallery/g5.svg",
      "Art exhibition",
+     "",
      "Yes"
     ],
     [
      "assets/images/gallery/g6.svg",
      "Annual function",
+     "",
      "Yes"
     ]
    ],
@@ -286,36 +363,98 @@ const CONFIG = {
     [
      "Pre-Primary",
      "Nursery to UKG with play-based learning and early literacy.",
+     "",
+     "",
      "Yes"
     ],
     [
      "Primary (Grades 1-5)",
      "Strong foundations in language, mathematics and science.",
+     "",
+     "",
      "Yes"
     ],
     [
      "Lower Secondary (6-8)",
      "Building skills, curiosity and good study habits.",
+     "",
+     "",
      "Yes"
     ],
     [
      "Secondary (9-10)",
      "SEE preparation with extra support and regular assessments.",
+     "",
+     "",
      "Yes"
     ],
     [
      "Higher Secondary (11-12)",
      "[Add the streams you offer: Science, Management, Education...]",
+     "",
+     "",
      "Yes"
     ],
     [
      "Co-curricular",
      "Sports, music, art, debate, scouts and computer club.",
+     "",
+     "",
      "Yes"
     ]
    ],
    "public": [
     "title",
+    "description",
+    "title_ne",
+    "description_ne"
+   ],
+   "hide": [
+    "published",
+    "no"
+   ]
+  },
+  {
+   "name": "ClassSubjects",
+   "key": "classSubjects",
+   "headers": [
+    "Class",
+    "Subject",
+    "Description",
+    "Class_ne",
+    "Subject_ne",
+    "Description_ne",
+    "Published"
+   ],
+   "seed": [],
+   "public": [
+    "class",
+    "subject",
+    "description",
+    "class_ne",
+    "subject_ne",
+    "description_ne"
+   ],
+   "hide": [
+    "published",
+    "no"
+   ]
+  },
+  {
+   "name": "AdmissionFiles",
+   "key": "admissionFiles",
+   "headers": [
+    "Title",
+    "File",
+    "Description",
+    "Title_ne",
+    "Description_ne",
+    "Published"
+   ],
+   "seed": [],
+   "public": [
+    "title",
+    "file",
     "description",
     "title_ne",
     "description_ne"
@@ -450,9 +589,95 @@ function ss_(){
   });
   return ss;
 }
-/** Run once from the editor. The spreadsheet URL is shown in the log. */
-function setup(){Logger.log(ss_().getUrl());}
+/** Run after updates to add new tabs/columns without replacing existing sheet data. */
+function setup(){
+  const ss=ss_();
+  const props=PropertiesService.getScriptProperties();
+  CONFIG.tabs.forEach(t=>{
+    let sh=ss.getSheetByName(t.name);
+    if(!sh){
+      sh=ss.insertSheet(t.name);
+      sh.getRange(1,1,1,t.headers.length).setValues([t.headers]);
+      sh.setFrozenRows(1);
+      sh.getRange(1,1,1,t.headers.length).setFontWeight('bold').setBackground('#e8eefc');
+      (t.seed||[]).forEach(r=>sh.appendRow(r));
+    }else{
+      const last=sh.getLastColumn(),headers=last?sh.getRange(1,1,1,last).getValues()[0].map(x=>String(x).toLowerCase().replace(/\s+/g,'')):[];
+      t.headers.forEach(h=>{
+        const key=String(h).toLowerCase().replace(/\s+/g,'');
+        if(headers.indexOf(key)<0){const col=sh.getLastColumn()+1;sh.getRange(1,col).setValue(h).setFontWeight('bold').setBackground('#e8eefc');headers.push(key);}
+      });
+    }
+    if(t.name==='Calendar'){
+      ['DateBS','EndDateBS'].forEach(h=>{
+        const headers=sh.getRange(1,1,1,sh.getLastColumn()).getValues()[0].map(x=>String(x).toLowerCase().replace(/\s+/g,''));
+        const col=headers.indexOf(h.toLowerCase());
+        if(col>=0&&sh.getMaxRows()>1)sh.getRange(2,col+1,sh.getMaxRows()-1,1).setNumberFormat('@');
+      });
+    }
+  });
+  let rootId=props.getProperty('UPLOAD_ROOT_ID');
+  const root=rootId?DriveApp.getFolderById(rootId):DriveApp.createFolder(CONFIG.uploadFolders.root);
+  props.setProperty('UPLOAD_ROOT_ID',root.getId());
+  const uploadLinks={};
+  ['notices','gallery'].forEach(key=>{
+    const property='UPLOAD_'+key.toUpperCase()+'_ID';
+    const id=props.getProperty(property);
+    const folder=id?DriveApp.getFolderById(id):root.createFolder(CONFIG.uploadFolders[key]);
+    props.setProperty(property,folder.getId());
+    uploadLinks[key]=folder.getUrl();
+  });
+  CacheService.getScriptCache().remove('content');
+  Logger.log(ss.getUrl());
+  Logger.log('Upload folders for administrators:');
+  Logger.log('Notices: '+uploadLinks.notices);
+  Logger.log('Gallery: '+uploadLinks.gallery);
+}
 
+function uploadFolder_(key){
+  const id=PropertiesService.getScriptProperties().getProperty('UPLOAD_'+key.toUpperCase()+'_ID');
+  if(!id) throw new Error('Upload folders are not set up. Run setup() and redeploy the Apps Script.');
+  return DriveApp.getFolderById(id);
+}
+function publishFile_(file){
+  if(file.getSharingAccess()!==DriveApp.Access.ANYONE_WITH_LINK) file.setSharing(DriveApp.Access.ANYONE_WITH_LINK,DriveApp.Permission.VIEW);
+}
+function folderFiles_(folder,path,rows){
+  const files=folder.getFiles();
+  while(files.hasNext()) rows.push({file:files.next(),folder:path});
+  const folders=folder.getFolders();
+  while(folders.hasNext()){
+    const child=folders.next();
+    folderFiles_(child,path?path+' / '+child.getName():child.getName(),rows);
+  }
+  return rows;
+}
+function galleryUploads_(){
+  const rows=[],uploads=folderFiles_(uploadFolder_('gallery'),'',[]);
+  uploads.forEach(upload=>{
+    const file=upload.file;
+    if(file.getMimeType().indexOf('image/')!==0){Logger.log('Skipping non-image in Gallery folder: '+file.getName());return}
+    publishFile_(file);
+    const caption=file.getName().replace(/\.[^.]+$/,'').replace(/[_-]+/g,' ');
+    rows.push({image:file.getUrl(),caption:upload.folder?upload.folder+' - '+caption:caption,caption_ne:'',id:file.getId()});
+  });
+  return rows;
+}
+function noticeUploads_(){
+  const rows=[],uploads=folderFiles_(uploadFolder_('notices'),'',[]),tz=Session.getScriptTimeZone();
+  uploads.forEach(upload=>{
+    const file=upload.file,mime=file.getMimeType();
+    if(mime!=='application/pdf'){Logger.log('Skipping non-PDF in Notices folder: '+file.getName());return}
+    publishFile_(file);
+    const stem=file.getName().replace(/\.pdf$/i,''),parts=stem.split('__'),validDate=parts.length>=3&&/^\d{4}-\d{2}-\d{2}$/.test(parts[0])&&!isNaN(new Date(parts[0]+'T00:00:00').getTime());
+    if(!validDate) Logger.log('Notice filename should be YYYY-MM-DD__Category__Title.pdf: '+file.getName());
+    const date=validDate?parts[0]:Utilities.formatDate(file.getLastUpdated(),tz,'yyyy-MM-dd');
+    const category=validDate?parts[1].replace(/[_-]+/g,' '):'Notice';
+    const title=validDate?parts.slice(2).join('__').replace(/[_-]+/g,' '):stem.replace(/[_-]+/g,' ');
+    rows.push({id:'drive-'+file.getId(),date:date,title:title,category:category,description:'',title_ne:'',category_ne:'',description_ne:'',file:file.getUrl()});
+  });
+  return rows;
+}
 function content_(){
   const cache=CacheService.getScriptCache(), hit=cache.get('content');
   if(hit) return JSON.parse(hit);
@@ -470,6 +695,8 @@ function content_(){
       t.public.forEach(k=>{let x=r[col(k)]; if(x instanceof Date) x=Utilities.formatDate(x,tz,'yyyy-MM-dd'); o[k]=x;});
       return o;});
   });
+  out.gallery=out.gallery.concat(galleryUploads_());
+  out.notices=out.notices.concat(noticeUploads_());
   try{cache.put('content',JSON.stringify(out),120);}catch(e){}
   return out;
 }
