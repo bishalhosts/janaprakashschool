@@ -1,47 +1,73 @@
 /* ===== EDIT THIS FILE: school name, contact details and fixed text. News, B.S. activities, slides, gallery, programs, class subjects and admission files live in your Google Sheet. ===== */
 const SITE={
-  name:"Sample School",nameNe:"नमुना विद्यालय",tagline:"Learning today, leading tomorrow",taglineNe:"आजको शिक्षा, भोलिको नेतृत्व",
-  email:"bishal94110@gmail.com",phone:"+977-XX-XXXXXX",address:"[School address, City, Nepal]",addressNe:"[विद्यालयको ठेगाना, सहर, नेपाल]",hours:"Sun-Fri, 9:00 AM - 4:00 PM",hoursNe:"आइत–शुक्र, बिहान ९:०० – दिउँसो ४:००",
+  name:"Shree JanaPrakash Sec. School",nameNe:"श्री जनप्रकाश माध्यमिक विद्यालय",tagline:"Learning today, leading tomorrow",taglineNe:"आजको शिक्षा, भोलिको नेतृत्व",
+  email:"bishal94110@gmail.com",phone:"+977-9841109411",address:"Kolti,2 Bajura",addressNe:"कोल्टी,२ बाजुरा",hours:"Sun-Fri, 9:00 AM - 4:00 PM",hoursNe:"आइत–शुक्र, बिहान ९:०० – दिउँसो ४:००",
   API:"https://script.google.com/macros/s/AKfycbz6QAcnXgmONf8GNCTx9n5yKQ78bYDOa5Z0Vr6-NQcob8HaxzRGLyn1uwDtSvW1oUtM/exec",   // Google Sheet database (see README)
   nav:[["index","Home"],["about","About"],["academics","Academics"],["admissions","Admissions"],["calendar","Calendar"],["notices","Notices"],["gallery","Gallery"],["contact","Contact"]],
   cta:["Apply Now","admissions.html"],
-  principal:{name:"[Principal Name]",nameNe:"[प्रधानाध्यापकको नाम]",role:"Principal",photo:"assets/images/principal.svg",message:"[Write the principal's welcome message here. Two or three short paragraphs work best.]",messageNe:"[प्रधानाध्यापकको स्वागत सन्देश यहाँ लेख्नुहोस्।]"},
-  about:["[Write about your school's history, vision and values here.]","[Add more: mission, achievements, teaching approach.]"],
-  aboutNe:["[विद्यालयको इतिहास, दृष्टिकोण र मूल्यबारे यहाँ लेख्नुहोस्।]","[थप्नुहोस्: लक्ष्य, उपलब्धि र शिक्षण पद्धति।]"],
-  facilities:["Library","Science Laboratory","Computer Lab","Sports Ground","Canteen","School Transport"],
-  stats:[["25+","Years of service"],["1200","Students"],["60","Teachers"],["98%","Pass rate"]],
+
+
+
+principal: {
+  name: "Jayalal Karki",
+  nameNe: "जयलाल कार्की",
+  role: "Vice.Principal",
+  photo: "assets/images/principal.jpg",
+
+  message: "Welcome to Shree Jana Prakash Secondary School, Kolti, Bajura. We are committed to providing quality education in a supportive, disciplined, and student-friendly environment. Our goal is to help every student develop knowledge, skills, creativity, confidence, and good moral values. We believe that education is the foundation of a successful and responsible society. Together with our dedicated teachers, supportive parents, and community, we strive to create a bright future for every learner.",
+
+  messageNe: "श्री जनप्रकाश माध्यमिक विद्यालय, कोल्टी, बाजुरामा हार्दिक स्वागत गर्दछु। हामी विद्यार्थीहरूलाई गुणस्तरीय, व्यावहारिक तथा जीवनोपयोगी शिक्षा प्रदान गर्न प्रतिबद्ध छौँ। प्रत्येक विद्यार्थीमा ज्ञान, सीप, सिर्जनशीलता, आत्मविश्वास र नैतिक मूल्यको विकास गर्नु हाम्रो मुख्य उद्देश्य हो। शिक्षा नै सफल र जिम्मेवार समाज निर्माणको आधार हो भन्ने हाम्रो विश्वास छ। समर्पित शिक्षक, अभिभावक तथा समुदायको सहकार्यमा प्रत्येक विद्यार्थीको उज्ज्वल भविष्य निर्माण गर्न हामी निरन्तर प्रयासरत छौँ।"
+},
+
+
+about: [
+  "Shree Jana Prakash Secondary School is a community-based educational institution located in Kolti, Budhinanda Municipality, Ward No. 2, Bajura District, Sudurpashchim Province, Nepal. The school has been contributing to the educational development of the Kolti region by providing learning opportunities to children from different communities. It aims to provide quality education, develop students' abilities, and prepare them to become responsible and capable citizens.",
+
+  "The school focuses on academic excellence, practical learning, discipline, creativity, moral values, and overall personality development. Through the combined efforts of dedicated teachers, supportive parents, students, and the local community, the institution strives to create a friendly and inclusive learning environment where every student gets an opportunity to learn, grow, and succeed."
+],
+
+
+
+aboutNe: [
+  "श्री जनप्रकाश माध्यमिक विद्यालय नेपालको सुदूरपश्चिम प्रदेश, बाजुरा जिल्ला, बुढीनन्दा नगरपालिका वडा नं. २, कोल्टीमा अवस्थित एक सामुदायिक शैक्षिक संस्था हो। यस विद्यालयले कोल्टी क्षेत्र तथा आसपासका विभिन्न समुदायका बालबालिकालाई शिक्षाको अवसर प्रदान गर्दै स्थानीय शैक्षिक विकासमा योगदान पुर्‍याउँदै आएको छ। गुणस्तरीय शिक्षा प्रदान गर्नु, विद्यार्थीहरूको क्षमता विकास गर्नु तथा असल, सक्षम र जिम्मेवार नागरिक निर्माण गर्नु विद्यालयको प्रमुख उद्देश्य हो।",
+
+  "विद्यालयले शैक्षिक उत्कृष्टता, व्यावहारिक सिकाइ, अनुशासन, सिर्जनशीलता, नैतिक मूल्य र विद्यार्थीहरूको सर्वाङ्गीण विकासमा विशेष जोड दिँदै आएको छ। समर्पित शिक्षक, सहयोगी अभिभावक, मेहनती विद्यार्थी तथा स्थानीय समुदायको सहकार्यबाट विद्यालयले मैत्रीपूर्ण, समावेशी र गुणस्तरीय शैक्षिक वातावरण निर्माण गर्ने लक्ष्य राखेको छ। प्रत्येक विद्यार्थीलाई सिक्ने, अघि बढ्ने र सफल हुने समान अवसर प्रदान गर्नु हाम्रो प्रतिबद्धता हो।"
+],  
+
+facilities:["Library","Science Laboratory","Computer Lab","Sports Ground","Canteen","School Transport"],
+  
+stats:[["65+","Years of service"],["1200","Students"],["60","Teachers"],["98%","Pass rate"]],
   admission:["Collect the admission form from the office or fill the form below.","Submit the form with the required documents.","Attend the entrance test or interview, if required.","Pay the admission fee and join your class."],
   admissionNe:["कार्यालयबाट भर्ना फाराम लिनुहोस् वा तलको फाराम भर्नुहोस्।","आवश्यक कागजातसहित फाराम बुझाउनुहोस्।","आवश्यक भए प्रवेश परीक्षा वा अन्तर्वार्तामा सहभागी हुनुहोस्।","भर्ना शुल्क बुझाएर आफ्नो कक्षामा सहभागी हुनुहोस्।"],
   documents:"[Birth certificate, previous mark sheet, passport size photos, guardian's citizenship copy...]",
   documentsNe:"[जन्मदर्ता, अघिल्लो कक्षाको लब्धाङ्कपत्र, पासपोर्ट साइज तस्बिर, अभिभावकको नागरिकता प्रतिलिपि...]",
   classes:["Nursery","LKG","UKG","Grade 1","Grade 2","Grade 3","Grade 4","Grade 5","Grade 6","Grade 7","Grade 8","Grade 9","Grade 10","Grade 11","Grade 12"]
 };
-/* Demo content shown until your Google Sheet is connected (or if it cannot be reached). */
 const DEMO={
  "slides": [
   {
-   "image": "assets/images/slide1.svg",
-   "title": "Welcome to Sample School",
+   "image": "assets/images/slide1.jpg",
+   "title": "Welcome to Shree JanaPrakash Sec. School",
    "caption": "Learning today, leading tomorrow.",
    "link": "about.html",
    "cta": "About us"
   },
   {
-   "image": "assets/images/slide2.svg",
+   "image": "assets/images/slide2.jpg",
    "title": "Admissions Open for the New Session",
    "caption": "Apply online - we will contact you within two working days.",
    "link": "admissions.html",
    "cta": "Apply now"
   },
   {
-   "image": "assets/images/slide3.svg",
+   "image": "assets/images/slide3.jpg",
    "title": "Annual Sports Day 2026",
    "caption": "Join us on 15 November for a day of games and celebration.",
    "link": "calendar.html",
    "cta": "See calendar"
   },
   {
-   "image": "assets/images/slide4.svg",
+   "image": "assets/images/slide4.jpg",
    "title": "Our Library and Learning Spaces",
    "caption": "A quiet, well-stocked place for reading and research.",
    "link": "gallery.html",
