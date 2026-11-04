@@ -19,16 +19,16 @@ Plain HTML + CSS + JavaScript, hosted free on GitHub Pages. Google Sheets is the
 - Spam protection: hidden honeypot field, time check, duplicate check, rate limit, input validation and formula-injection protection run on the server.
 
 ### Sheet tabs
-| Tab | Public? | Columns |
-|---|---|---|
-| Slides | yes | Image, Title, Caption, Link, CTA, Title_ne, Caption_ne, CTA_ne, Published (home-page slider) |
-| Notices | yes | ID, Date, Title, Category, Description, Title_ne, Category_ne, Description_ne, File, Published |
-| Calendar | yes | legacy Date / EndDate, Title, Type, Title_ne, Type_ne, Published, DateBS, EndDateBS (optional) |
-| Gallery | yes | Image, Caption, Caption_ne, Category, Published |
-| Programs | yes | Title, Description, Title_ne, Description_ne, Published |
-| ClassSubjects | yes | Class, Subject, Description, Class_ne, Subject_ne, Description_ne, File, Published |
-| AdmissionFiles | yes | Title, File, Description, Title_ne, Description_ne, Published |
-| Enquiries | **private** | admission and contact form submissions (set Status / Notes yourself) |
+| Tab            | Public?     | Columns                                                                                        |
+| -------------- | ----------- | ---------------------------------------------------------------------------------------------- |
+| Slides         | yes         | Image, Title, Caption, Link, CTA, Title_ne, Caption_ne, CTA_ne, Published (home-page slider)   |
+| Notices        | yes         | ID, Date, Title, Category, Description, Title_ne, Category_ne, Description_ne, File, Published |
+| Calendar       | yes         | legacy Date / EndDate, Title, Type, Title_ne, Type_ne, Published, DateBS, EndDateBS (optional) |
+| Gallery        | yes         | Image, Caption, Caption_ne, Category, Published                                                |
+| Programs       | yes         | Title, Description, Title_ne, Description_ne, Published                                        |
+| ClassSubjects  | yes         | Class, Subject, Description, Class_ne, Subject_ne, Description_ne, File, Published             |
+| AdmissionFiles | yes         | Title, File, Description, Title_ne, Description_ne, Published                                  |
+| Enquiries      | **private** | admission and contact form submissions (set Status / Notes yourself)                           |
 
 Use the **नेपाली** button in the header to switch the interface language; the choice is remembered on the visitor's device. The interface and demo content have Nepali translations. For your own Google Sheet content, fill the optional `_ne` columns with Nepali text; if left blank, the English entry is shown. If your spreadsheet already exists, add those columns to its relevant tabs manually. Fixed text such as the principal message, about text, school name, contact details and class list is configured in `js/data.js`; optional Nepali versions use corresponding properties such as `nameNe`, `taglineNe`, `addressNe`, `hoursNe`, `messageNe`, `aboutNe`, `admissionNe` and `documentsNe`.
 
