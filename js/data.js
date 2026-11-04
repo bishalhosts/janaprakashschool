@@ -54,6 +54,13 @@ const SITE = {
   // Add teacher profiles here; each teacher can have an optional photo.
   teachers: [
     {
+      name: "Gauri Lal joshi",
+      nameNe: "गौरी लाल जोशी",
+      role: "Science Teacher",
+      roleNe: "विज्ञान शिक्षक",
+      photo: "assets/images/slide1.jpg"
+    },
+    {
       name: "Jayalal Karki",
       nameNe: "जयलाल कार्की",
       role: "Vice Principal",
