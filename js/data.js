@@ -21,7 +21,7 @@ const SITE = {
   hoursNe: "आइत–शुक्र, बिहान ९:०० – दिउँसो ४:००",
 
   // Google Sheets Database API
-  API: "https://script.google.com/macros/s/AKfycbz6QAcnXgmONf8GNCTx9n5yKQ78bYDOa5Z0Vr6-NQcob8HaxzRGLyn1uwDtSvW1oUtM/exec",
+  API: "https://script.google.com/macros/s/AKfycbw4k5s0s44XcyUuCZ2vh8eq2yLRvSdcAmzXMJFpQobcmhlxpt8I71XK4Nccn9kyqmDB/exec",
 
   // Navigation Menu
   nav: [
