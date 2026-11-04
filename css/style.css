@@ -568,6 +568,10 @@ footer a:hover {
     opacity: 1;
     transform: none
   }
+
+  .teacher-track {
+    animation: none;
+  }
 }
 
 @media print {
@@ -1416,6 +1420,78 @@ html[lang=ne] .lang-en {
 .developer-credit {
   display: block;
   margin-top: 8px
+}
+
+.teacher-window {
+  overflow: hidden;
+}
+
+.teacher-track {
+  display: flex;
+  width: max-content;
+  animation: teacher-marquee 48s linear infinite;
+}
+
+.teacher-group {
+  display: flex;
+  gap: 18px;
+  padding-right: 18px;
+}
+
+.teacher-window:hover .teacher-track,
+.teacher-window:focus-within .teacher-track {
+  animation-play-state: paused;
+}
+
+.teacher-card {
+  flex: 0 0 240px;
+  width: 240px;
+  padding: 18px;
+  text-align: center;
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-bottom: 4px solid var(--accent);
+  border-radius: 6px;
+}
+
+.teacher-card img,
+.teacher-avatar {
+  width: 112px;
+  height: 112px;
+  margin: 0 auto 12px;
+  border-radius: 50%;
+}
+
+.teacher-card img {
+  object-fit: cover;
+}
+
+.teacher-avatar {
+  display: grid;
+  place-items: center;
+  background: var(--tint);
+  color: var(--accent);
+  font-size: 2rem;
+  font-weight: 700;
+}
+
+.teacher-card h3,
+.teacher-card p {
+  margin: 4px 0;
+}
+
+.teacher-card p {
+  color: var(--muted);
+}
+
+.teacher-duplicates {
+  display: flex;
+}
+
+@keyframes teacher-marquee {
+  to {
+    transform: translateX(-50%);
+  }
 }
 
 .empty-note {

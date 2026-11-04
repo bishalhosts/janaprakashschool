@@ -42,6 +42,22 @@ R.stats = el => {
     const io = new IntersectionObserver(es => es.forEach(x => { if (!x.isIntersecting) return; io.unobserve(x.target); const b = x.target, m = b.dataset.to.match(/^(\d+)(.*)$/); if (!m || matchMedia("(prefers-reduced-motion:reduce)").matches) return; let s = null; const st = ts => { s = s || ts; const p = Math.min((ts - s) / 1300, 1); b.textContent = Math.round(+m[1] * p) + m[2]; if (p < 1) requestAnimationFrame(st) }; requestAnimationFrame(st) })); el.querySelectorAll("b").forEach(b => io.observe(b))
 };
 R.programs = (el, n, D) => { el.innerHTML = D.programs.map(p => `<div><h3>${esc(tr(localText(p, "title")))}</h3><p>${esc(tr(localText(p, "description")))}</p></div>`).join("") };
+R.teachers = el => {
+    const teachers = SITE.teachers || [];
+    if (!teachers.length) {
+        el.innerHTML = `<p class="empty-note">${esc(tr("Teacher profiles will be added soon."))}</p>`;
+        return;
+    }
+    const teacherCards = teachers.map(teacher => {
+        const name = language === "ne" ? (teacher.nameNe || teacher.name) : teacher.name;
+        const role = language === "ne" ? (teacher.roleNe || teacher.role) : teacher.role;
+        const initials = String(name || "").trim().split(/\s+/).slice(0, 2).map(part => part[0] || "").join("");
+        return `<article class="teacher-card">${teacher.photo ? `<img src="${esc(teacher.photo)}" alt="${esc(name)}" loading="lazy">` : `<span class="teacher-avatar" aria-hidden="true">${esc(initials)}</span>`}<h3>${esc(name)}</h3><p>${esc(role)}</p></article>`;
+    }).join("");
+    const copies = Math.max(1, Math.ceil(6 / teachers.length));
+    const cards = Array.from({ length: copies }, () => teacherCards).join("");
+    el.innerHTML = `<div class="teacher-window" role="region" aria-label="${esc(tr("Our Teachers"))}"><div class="teacher-track"><div class="teacher-group">${cards}</div><div class="teacher-group" aria-hidden="true">${cards}</div></div></div>`;
+};
 R.subjects = (el, n, D) => {
     const rows = D.classSubjects || [], groups = new Map(); rows.forEach(r => { const name = String(r.class_name || r.class || "").trim(); if (!name) return; if (!groups.has(name)) groups.set(name, []); groups.get(name).push(r) });
     const classes = [...groups.keys()].sort((a, b) => a.localeCompare(b, undefined, { numeric: true, sensitivity: "base" }));

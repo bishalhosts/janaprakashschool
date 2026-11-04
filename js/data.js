@@ -1,11 +1,43 @@
 /* ===== EDIT THIS FILE: school name, contact details and fixed text. News, B.S. activities, slides, gallery, programs, class subjects and admission files live in your Google Sheet. ===== */
 const SITE = {
-  name: "Shree JanaPrakash Sec. School", nameNe: "श्री जनप्रकाश माध्यमिक विद्यालय", tagline: "Learning today, leading tomorrow", taglineNe: "आजको शिक्षा, भोलिको नेतृत्व",
-  email: "bishal94110@gmail.com", phone: "+977-9841109411", address: "Kolti,2 Bajura", addressNe: "कोल्टी,२ बाजुरा", hours: "Sun-Fri, 9:00 AM - 4:00 PM", hoursNe: "आइत–शुक्र, बिहान ९:०० – दिउँसो ४:००",
-  API: "https://script.google.com/macros/s/AKfycbz6QAcnXgmONf8GNCTx9n5yKQ78bYDOa5Z0Vr6-NQcob8HaxzRGLyn1uwDtSvW1oUtM/exec",   // Google Sheet database (see README)
-  nav: [["index", "Home"], ["about", "About"], ["academics", "Academics"], ["admissions", "Admissions"], ["calendar", "Calendar"], ["notices", "Notices"], ["gallery", "Gallery"], ["contact", "Contact"]],
-  cta: ["Apply Now", "admissions.html"],
+  // School Information
+  name: "Shree JanaPrakash Sec. School",
+  nameNe: "श्री जनप्रकाश माध्यमिक विद्यालय",
 
+  tagline: "Learning today, leading tomorrow",
+  taglineNe: "आजको शिक्षा, भोलिको नेतृत्व",
+
+  // Change this path to use a different logo in the header and browser tab.
+  logo: "assets/images/logo.png",
+
+  // Contact Information
+  email: "janaprakashschool@gmail.com",
+  phone: "+977-9841109411",
+
+  address: "Kolti-2, Bajura",
+  addressNe: "कोल्टी–२, बाजुरा",
+
+  hours: "Sun-Fri, 9:00 AM - 4:00 PM",
+  hoursNe: "आइत–शुक्र, बिहान ९:०० – दिउँसो ४:००",
+
+  // Google Sheets Database API
+  API: "https://script.google.com/macros/s/AKfycbz6QAcnXgmONf8GNCTx9n5yKQ78bYDOa5Z0Vr6-NQcob8HaxzRGLyn1uwDtSvW1oUtM/exec",
+
+  // Navigation Menu
+  nav: [
+    ["index", "Home", "गृहपृष्ठ"],
+    ["about", "About", "हाम्रो बारेमा"],
+    ["academics", "Academics", "शैक्षिक कार्यक्रम"],
+    ["admissions", "Admissions", "भर्ना"],
+    ["calendar", "Calendar", "पात्रो"],
+    ["notices", "Notices", "सूचनाहरू"],
+    ["gallery", "Gallery", "ग्यालरी"],
+    ["contact", "Contact", "सम्पर्क"]
+  ],
+
+  // Main Call-to-Action Button
+  cta: ["Apply Now", "admissions.html"],
+  ctaNe: ["अहिले आवेदन दिनुहोस्", "admissions.html"],
 
 
   principal: {
@@ -18,6 +50,17 @@ const SITE = {
 
     messageNe: "श्री जनप्रकाश माध्यमिक विद्यालय, कोल्टी, बाजुरामा हार्दिक स्वागत गर्दछु। हामी विद्यार्थीहरूलाई गुणस्तरीय, व्यावहारिक तथा जीवनोपयोगी शिक्षा प्रदान गर्न प्रतिबद्ध छौँ। प्रत्येक विद्यार्थीमा ज्ञान, सीप, सिर्जनशीलता, आत्मविश्वास र नैतिक मूल्यको विकास गर्नु हाम्रो मुख्य उद्देश्य हो। शिक्षा नै सफल र जिम्मेवार समाज निर्माणको आधार हो भन्ने हाम्रो विश्वास छ। समर्पित शिक्षक, अभिभावक तथा समुदायको सहकार्यमा प्रत्येक विद्यार्थीको उज्ज्वल भविष्य निर्माण गर्न हामी निरन्तर प्रयासरत छौँ।"
   },
+
+  // Add teacher profiles here; each teacher can have an optional photo.
+  teachers: [
+    {
+      name: "Jayalal Karki",
+      nameNe: "जयलाल कार्की",
+      role: "Vice Principal",
+      roleNe: "उपप्रधानाध्यापक",
+      photo: "assets/images/principal.jpg"
+    }
+  ],
 
 
   about: [
@@ -34,14 +77,105 @@ const SITE = {
     "विद्यालयले शैक्षिक उत्कृष्टता, व्यावहारिक सिकाइ, अनुशासन, सिर्जनशीलता, नैतिक मूल्य र विद्यार्थीहरूको सर्वाङ्गीण विकासमा विशेष जोड दिँदै आएको छ। समर्पित शिक्षक, सहयोगी अभिभावक, मेहनती विद्यार्थी तथा स्थानीय समुदायको सहकार्यबाट विद्यालयले मैत्रीपूर्ण, समावेशी र गुणस्तरीय शैक्षिक वातावरण निर्माण गर्ने लक्ष्य राखेको छ। प्रत्येक विद्यार्थीलाई सिक्ने, अघि बढ्ने र सफल हुने समान अवसर प्रदान गर्नु हाम्रो प्रतिबद्धता हो।"
   ],
 
-  facilities: ["Library", "Science Laboratory", "Computer Lab", "Sports Ground", "Canteen", "School Transport"],
+  facilities: [
+    "Library",
+    "Science Laboratory",
+    "Computer Lab",
+    "Sports Ground",
+    "Canteen",
+    "School Transport"
+  ],
 
-  stats: [["65+", "Years of service"], ["1200", "Students"], ["60", "Teachers"], ["98%", "Pass rate"]],
-  admission: ["Collect the admission form from the office or fill the form below.", "Submit the form with the required documents.", "Attend the entrance test or interview, if required.", "Pay the admission fee and join your class."],
-  admissionNe: ["कार्यालयबाट भर्ना फाराम लिनुहोस् वा तलको फाराम भर्नुहोस्।", "आवश्यक कागजातसहित फाराम बुझाउनुहोस्।", "आवश्यक भए प्रवेश परीक्षा वा अन्तर्वार्तामा सहभागी हुनुहोस्।", "भर्ना शुल्क बुझाएर आफ्नो कक्षामा सहभागी हुनुहोस्।"],
-  documents: "[Birth certificate, previous mark sheet, passport size photos, guardian's citizenship copy...]",
-  documentsNe: "[जन्मदर्ता, अघिल्लो कक्षाको लब्धाङ्कपत्र, पासपोर्ट साइज तस्बिर, अभिभावकको नागरिकता प्रतिलिपि...]",
-  classes: ["Nursery", "LKG", "UKG", "Grade 1", "Grade 2", "Grade 3", "Grade 4", "Grade 5", "Grade 6", "Grade 7", "Grade 8", "Grade 9", "Grade 10", "Grade 11", "Grade 12"]
+  facilitiesNe: [
+    "पुस्तकालय",
+    "विज्ञान प्रयोगशाला",
+    "कम्प्युटर प्रयोगशाला",
+    "खेल मैदान",
+    "खाजा घर",
+    "विद्यालय यातायात"
+  ],
+
+  stats: [
+    ["65+", "Years of Service"],
+    ["1200", "Students"],
+    ["60", "Teachers"],
+    ["98%", "Pass Rate"]
+  ],
+
+  statsNe: [
+    ["६५+", "सेवाका वर्षहरू"],
+    ["१२००", "विद्यार्थीहरू"],
+    ["६०", "शिक्षकहरू"],
+    ["९८%", "उत्तीर्ण दर"]
+  ],
+
+  admission: [
+    "Collect the admission form from the office or fill out the online form.",
+    "Submit the form with the required documents.",
+    "Attend the entrance test or interview, if required.",
+    "Pay the admission fee and join your class."
+  ],
+
+  admissionNe: [
+    "कार्यालयबाट भर्ना फाराम लिनुहोस् वा अनलाइन फाराम भर्नुहोस्।",
+    "आवश्यक कागजातसहित फाराम बुझाउनुहोस्।",
+    "आवश्यक भए प्रवेश परीक्षा वा अन्तर्वार्तामा सहभागी हुनुहोस्।",
+    "भर्ना शुल्क बुझाएर आफ्नो कक्षामा सहभागी हुनुहोस्।"
+  ],
+
+  documents: [
+    "Birth Certificate",
+    "Previous Grade Mark Sheet",
+    "Passport-size Photographs",
+    "Guardian's Citizenship Certificate Copy",
+    "Transfer Certificate (if applicable)"
+  ],
+
+  documentsNe: [
+    "जन्मदर्ता प्रमाणपत्र",
+    "अघिल्लो कक्षाको लब्धाङ्कपत्र",
+    "पासपोर्ट साइजका तस्बिरहरू",
+    "अभिभावकको नागरिकता प्रमाणपत्रको प्रतिलिपि",
+    "स्थानान्तरण प्रमाणपत्र (आवश्यक भएमा)"
+  ],
+
+  classes: [
+    "Nursery",
+    "LKG",
+    "UKG",
+    "Grade 1",
+    "Grade 2",
+    "Grade 3",
+    "Grade 4",
+    "Grade 5",
+    "Grade 6",
+    "Grade 7",
+    "Grade 8",
+    "Grade 9",
+    "Grade 10",
+    "Grade 11",
+    "Grade 12"
+  ],
+
+  classesNe: [
+    "नर्सरी",
+    "एलकेजी",
+    "युकेजी",
+    "कक्षा १",
+    "कक्षा २",
+    "कक्षा ३",
+    "कक्षा ४",
+    "कक्षा ५",
+    "कक्षा ६",
+    "कक्षा ७",
+    "कक्षा ८",
+    "कक्षा ९",
+    "कक्षा १०",
+    "कक्षा ११",
+    "कक्षा १२"
+  ]
+
+
 };
 const DEMO = {
   "slides": [
