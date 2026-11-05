@@ -52,7 +52,7 @@ To provide schools and colleges with a simple digital platform for sharing infor
 
 **Project:** School / College Website
 
-**Developer:** [Your Name]
+**Developer:** Bishal Regmi
 
 **Technologies:** HTML, CSS, JavaScript, Google Apps Script and Google Sheets.
 
